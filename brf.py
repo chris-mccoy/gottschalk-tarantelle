@@ -67,6 +67,9 @@ def tokenize(s):
             toks.append(('repeat_end',)); i += 2; continue
         if (at('#1') or at('#2')) and not any(t[0] in ('note', 'rest') for t in toks):
             toks.append(('ending', int(s[i + 1]))); i += 2; continue
+        m = re.match(r",'(%%|<<|%|<|\*),'", s[i:])
+        if m:                                       # a cautionary accidental, in parentheses in print
+            toks.append(('acc', dict(ACCS)[m.group(1)])); i += m.end(); continue
         if at('<l'):
             toks.append(('fermata',)); i += 2; continue
         if at('<c'):

@@ -46,7 +46,8 @@ needed. The decoder handles the code as this file uses it: octave marks and BANA
 unmarked octaves, intervals read down in the right hand and up in the left, interval doubling
 (`--`), full- and part-measure in-accord, measure and part-measure repeats (whose extent comes
 from the bar's length), 16th-note grouping, triplets and quintuplets, stem signs, grace and
-cue-size notes, ties, slurs, fingered tremolos, hand changes within a line, first and second
+cue-size notes, cautionary accidentals (in parentheses in print, `,'` … `,'` in the braille),
+ties, slurs, fingered tremolos, hand changes within a line, first and second
 endings, and key changes. Every voice of all 539 bars (and the two second endings) adds up to
 exactly 6/8.
 
