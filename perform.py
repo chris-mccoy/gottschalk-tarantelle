@@ -311,6 +311,28 @@ class Plan:
 
 # ---------------------------------------------------------------- rendering
 
+def chord_offsets(pitches, hand, room, rnd):
+    """When each key of a chord goes down, in seconds after the first (pitches ascending).
+    A pianist's chord fans out over a few tens of milliseconds, mostly from the bottom up and
+    wider the more notes and the wider the stretch, while the melody note (top of the right
+    hand) or the bass (bottom of the left) comes first.  It never spreads over more than a
+    third of the time to the hand's next chord."""
+    n = len(pitches)
+    if n == 1:
+        return [0.0]
+    span = pitches[-1] - pitches[0]
+    width = (0.004 + 0.0045 * (n - 1) + 0.0004 * span) * rnd.uniform(0.6, 1.4)
+    width = min(width, 0.045, room / 3)
+    upward = rnd.uniform(0.45, 0.85)              # how much of the fan runs bottom to top
+    offs = [width * (upward * i / (n - 1) + (1 - upward) * rnd.random()) for i in range(n)]
+    lead = 0.006 + rnd.uniform(0, 0.006)
+    if hand == 'R':
+        offs[-1] = min(offs) - lead
+    else:
+        offs[0] = min(offs) - lead / 2
+    first = min(offs)
+    return [o - first for o in offs]
+
 def render(notes, marks, bars, args):
     rnd = random.Random(args.seed)
     plan = Plan(notes, marks, bars, args)
@@ -349,6 +371,12 @@ def render(notes, marks, bars, args):
         if n['grace']:
             graces.setdefault((n['hand'], n['t']), []).append(n['chord'])
 
+    # a slow wander in the timing, shared by both hands (a hand's own placement comes on top)
+    drift, x = [], 0.0
+    for _ in range(len(bars) * 6 + 1):
+        x = 0.85 * x + rnd.gauss(0, 0.0032)
+        drift.append(x)
+
     for cid, chord in sorted(by_chord.items(), key=lambda x: x[1][0]['t']):
         n0 = chord[0]
         t, h = n0['t'], n0['hand']
@@ -358,7 +386,8 @@ def render(notes, marks, bars, args):
         pos = float(n0['pos'])
         metric = 5 if pos == 0 else 2.5 if pos == 3 else (-1.5 if pos % 1 else 0)
         acc = plan.accents.get(t, 0)
-        jitter_t = rnd.gauss(0, 0.004)
+        # each hand lands on its own, the left hand usually a shade ahead of the right
+        place = drift[int(t)] + (rnd.gauss(0, 0.005) if h == 'R' else rnd.gauss(-0.006, 0.006))
         # 8-bar phrase arc
         x = (float(t) % 48) / 48
         arc = 5 * math.sin(math.pi * x) - 2.5 + contour.get(cid, 0.0)
@@ -368,12 +397,12 @@ def render(notes, marks, bars, args):
             lv += 3
         if tex in ('martellato', 'pesante', 'impeto'):
             lv += 4
-        on_base = plan.sec(t) + jitter_t
+        on_base = plan.sec(t) + place
         if n0['grace']:
             # graces come just before the beat
             seq = graces[(h, t)]
             rank = len(seq) - seq.index(cid)
-            on_base = plan.sec(t) - rank * min(0.055, 0.42 * plan.eighth[min(int(t), len(plan.eighth) - 1)])
+            on_base = plan.sec(t) + drift[int(t)] - rank * min(0.055, 0.42 * plan.eighth[min(int(t), len(plan.eighth) - 1)])
         dur_s = plan.sec(t + n0['dur']) - plan.sec(t) if n0['dur'] else 0.06
         ar = n0['artic']
         # how long the key is held
@@ -397,6 +426,13 @@ def render(notes, marks, bars, args):
             hold = max(hold, dur_s * 1.05)
         hold = max(hold, 0.035)
         ps = sorted(chord, key=lambda n: n['pitch'])
+        nx = next_onset(h, t)
+        room = plan.sec(nx) - plan.sec(t) if nx is not None else 1.0
+        if n0['arp']:
+            step = rnd.uniform(0.024, 0.034)       # a printed arpeggio rolls from the bottom
+            offsets = [i * step for i in range(len(ps))]
+        else:
+            offsets = chord_offsets([n['pitch'] for n in ps], h, room, rnd)
         for idx, n in enumerate(ps):
             v = lv + metric + arc + acc
             role = n['role']
@@ -424,12 +460,9 @@ def render(notes, marks, bars, args):
             if v > 100:
                 v = 100 + (v - 100) * 0.45          # soft knee: keep the loudest chords from clipping
             v = int(max(12, min(120, round(v))))
-            on = on_base
-            if role == 'top' and n['size'] > 1:
-                on -= 0.008               # melody leads the chord slightly
-            if n['arp']:
-                on += idx * 0.028
-            out.append((on, on + hold, n['pitch'], v))
+            on = on_base + offsets[idx]
+            off = on_base + hold + rnd.gauss(0, 0.006)     # releases are a little uneven too
+            out.append((on, max(off, on + 0.03), n['pitch'], v))
     out.sort()
     pedal = []
     for t, h, mk in marks:

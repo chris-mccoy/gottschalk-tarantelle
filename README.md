@@ -78,16 +78,22 @@ Everything beyond the notes is an interpretation layered over the score's own ma
   melody grows as it rises above its surroundings, beat 1 of each bar (and beat 2, less) is
   stressed, and eight-bar arcs give it shape. *legg.*, *scherz.* and *scintillante* are lighter;
   *martellato*, *pesante* and *con impeto* heavier.
-- **Voicing**: the top of each right-hand chord leads (louder and about 8 ms early), inner
-  notes recede, and the bass is firm.
+- **Voicing**: the top of each right-hand chord is louder, inner notes recede, and the bass
+  is firm.
+- **Chords**: no chord lands all at once. Each hand places its chord separately, the left
+  hand usually a few milliseconds ahead. Within a hand the notes fan out, mostly from the bottom
+  up, over about 10 ms for an octave to 20–40 ms for a big chord, wider the more notes and the
+  wider the stretch. The melody note leads in the right hand and the bass in the left. A chord
+  never fans out over more than a third of the time to that hand's next one, so fast repeated
+  chords stay crisp. Printed arpeggios roll from the bottom at about 30 ms a note.
 - **Touch**: staccato and staccatissimo are short, slurs and held stems legato, accents,
   marcato and tenuto as printed, and unmarked notes slightly detached.
 - **Pedal**: as the braille marks it, each *Ped.* lifting and catching again just after the
   beat.
 - **Ornaments**: grace notes come just before the beat, and the final D1–D2 tremolo is played
   out in sixteenths.
-- **Variation**: small random variation (seeded, so every build is the same) in timing and
-  velocity.
+- **Variation**: the timing wanders slowly by a few milliseconds, and velocities and releases
+  vary a little from note to note. The randomness is seeded, so every build is the same.
 - **Repeats**: both are taken (bars 141–172 and 391–422), with their first and second endings:
   603 bars, about 7½ minutes.
 
