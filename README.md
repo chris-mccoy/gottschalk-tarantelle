@@ -1,5 +1,9 @@
 # Gottschalk: Grande Tarantelle, Op. 67 (Espadero's solo-piano arrangement)
 
+<video src="gottschalk-tarantelle-espadero.mp4" controls width="400" height="50">
+  Your browser does not support the audio element.
+</video>
+
 An expressive MIDI performance, decoded from the braille transcription of the score. The piece
 turned up in the devtronix-model-264 project, on a Yamaha Disklavier floppy labelled
 `fenelon-tarantelle` that holds its piano-and-orchestra form; here it is Nicolás Ruiz
