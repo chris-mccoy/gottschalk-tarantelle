@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 // render.swift -- play a MIDI file through a macOS sampler instrument, offline, into an audio file.
 //
 // usage: swift render.swift IN.mid OUT.m4a [SOUNDBANK.sf2|.dls | INSTRUMENT.exs|.aupreset]

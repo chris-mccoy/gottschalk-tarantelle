@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
 """
 perform.py -- render the braille-decoded Tarantelle (brf.py) as an expressive piano MIDI file.
 

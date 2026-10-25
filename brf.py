@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
 """
 brf.py -- read a bar-over-bar keyboard score in North American ASCII music braille (BANA
 Music Braille Code) into timed note events.

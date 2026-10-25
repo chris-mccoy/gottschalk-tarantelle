@@ -13,7 +13,8 @@ Espadero's transcription for piano alone, Boston: Oliver Ditson, 1874.
 | `render.swift` | Plays a MIDI file through the macOS sampler, offline, into an `.m4a` |
 | `gottschalk-tarantelle-espadero.mid` | The performance |
 | `gottschalk-tarantelle-espadero.m4a` | The performance as audio |
-| `LICENSE` | Creative Commons Attribution-ShareAlike 4.0 International |
+| `LICENSE-MIT` | The MIT license, for the code |
+| `LICENSE-CC-BY-SA-4.0` | Creative Commons Attribution-ShareAlike 4.0 International, for the braille, the performances and the rest |
 
 The Python needs only the standard library (3.11 or later); `render.swift` needs macOS and
 Swift (the Xcode command-line tools).
@@ -98,10 +99,13 @@ cuts; they are not applied here.
 
 ## License
 
+The code (`brf.py`, `perform.py`, `render.swift`) is under the [MIT license](LICENSE-MIT).
+
 The braille transcription in `espadero.brf` is by Hu Haipeng, for the Braille Orchestra and
 Open Braille Music projects ([brailleorch.org](http://www.brailleorch.org)), published on
 [IMSLP](https://imslp.org/wiki/Grande_Tarantelle%2C_Op.67_%28Gottschalk%2C_Louis_Moreau%29)
 (#933069) under the Creative Commons Attribution-ShareAlike 4.0 license. The MIDI and audio
-performances are adaptations of it, and this repository as a whole is shared under the same
-license: [CC BY-SA 4.0](LICENSE). The Ditson print of 1874 that the transcription follows, and
-Gottschalk's and Espadero's music, are in the public domain.
+performances are adaptations of it, and they and the rest of the repository (this README
+included) are shared under the same license: [CC BY-SA 4.0](LICENSE-CC-BY-SA-4.0). The Ditson
+print of 1874 that the transcription follows, and Gottschalk's and Espadero's music, are in
+the public domain.
