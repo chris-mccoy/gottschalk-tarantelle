@@ -12,7 +12,8 @@ Espadero's transcription for piano alone, Boston: Oliver Ditson, 1874.
 | `perform.py` | Turns the notes into the performance: tempo, rubato, dynamics, voicing, articulation, pedal |
 | `render.swift` | Plays a MIDI file through the macOS sampler, offline, into an `.m4a` |
 | `gottschalk-tarantelle-espadero.mid` | The performance |
-| `gottschalk-tarantelle-espadero.m4a` | The performance as audio (not in git: 14 MB, and `render.swift` remakes it in seconds) |
+| `gottschalk-tarantelle-espadero.m4a` | The performance as audio |
+| `LICENSE` | Creative Commons Attribution-ShareAlike 4.0 International |
 
 The Python needs only the standard library (3.11 or later); `render.swift` needs macOS and
 Swift (the Xcode command-line tools).
@@ -94,3 +95,13 @@ Everything beyond the notes is an interpretation layered over the score's own ma
 
 Jia Wang's recording of this arrangement (in a score-following video by *Fruisen*) makes
 cuts; they are not applied here.
+
+## License
+
+The braille transcription in `espadero.brf` is by Hu Haipeng, for the Braille Orchestra and
+Open Braille Music projects ([brailleorch.org](http://www.brailleorch.org)), published on
+[IMSLP](https://imslp.org/wiki/Grande_Tarantelle%2C_Op.67_%28Gottschalk%2C_Louis_Moreau%29)
+(#933069) under the Creative Commons Attribution-ShareAlike 4.0 license. The MIDI and audio
+performances are adaptations of it, and this repository as a whole is shared under the same
+license: [CC BY-SA 4.0](LICENSE). The Ditson print of 1874 that the transcription follows, and
+Gottschalk's and Espadero's music, are in the public domain.
