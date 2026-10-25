@@ -2,9 +2,7 @@
 
 https://github.com/user-attachments/assets/8343a67a-f7a6-4181-a260-b849b4440ee4
 
-An expressive MIDI performance, decoded from the braille transcription of the score. The piece
-turned up in the devtronix-model-264 project, on a Yamaha Disklavier floppy labelled
-`fenelon-tarantelle` that holds its piano-and-orchestra form; here it is Nicolás Ruiz
+An expressive MIDI performance, decoded from the braille transcription of the score. The piece is Nicolás Ruiz
 Espadero's transcription for piano alone, Boston: Oliver Ditson, 1874.
 
 | File | What it is |
@@ -31,9 +29,6 @@ python3 brf.py espadero.brf 1 12      # the decoded notes of bars 1-12
 dotted-quarter tempo (158), `--no-repeats` skips the two repeats.
 
 ## Listening
-
-The `.m4a` plays anywhere (double-click it). It uses the plain General MIDI grand built into
-macOS, so it sounds a little thin.
 
 For a better piano, open the `.mid` in GarageBand: **File › Open**, or drag it into an empty
 project. When GarageBand asks *Also import tempo information?*, click **Import Tempo**: the
@@ -95,9 +90,6 @@ Everything beyond the notes is an interpretation layered over the score's own ma
   velocity.
 - **Repeats**: both are taken (bars 141–172 and 391–422), with their first and second endings:
   603 bars, about 7½ minutes.
-
-Jia Wang's recording of this arrangement (in a score-following video by *Fruisen*) makes
-cuts; they are not applied here.
 
 ## License
 
