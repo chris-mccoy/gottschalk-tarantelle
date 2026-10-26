@@ -1,6 +1,6 @@
 # Gottschalk: Grande Tarantelle, Op. 67 (Espadero's solo-piano arrangement)
 
-https://github.com/user-attachments/assets/8343a67a-f7a6-4181-a260-b849b4440ee4
+https://github.com/user-attachments/assets/c5c9ca0d-2cd4-42a1-9cca-06454fbfd1bd
 
 An expressive MIDI performance, decoded from the braille transcription of the score. The piece is Nicolás Ruiz
 Espadero's transcription for piano alone, Boston: Oliver Ditson, 1874.
